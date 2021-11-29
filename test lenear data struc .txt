@@ -1,0 +1,217 @@
+PROBLEM1 SOL1:
+ALGORITHME lenear-data-structure
+var
+tab:Array_of_integer[30];
+tab2:Array_of_integer[30];
+i,j:integer;
+begin
+repeat
+write('donner la taille du tableau:');
+readln(n)
+until (n>=5)
+for i from 1 to n do 
+  write('T[',i,']')
+  readln(T[i])
+end_for
+repeat
+write('donner la taille du tableau 2:')
+readln(n2);
+until (n2>=5)
+for i from 1 to n2 do 
+  write('T2[',i,']')
+  readln(T2[i])
+end_for
+i:=1;
+sum:=0;
+msg:='';
+repeat
+ for j from 0 to n2 do 
+  if (T[i]<>T2[j]) then 
+  sum:=sum+T[i]+T2[j];
+  msg:=msg +',i,' + ','+',j,' + ',';
+  end_if
+ end_for
+  i:=i+1;
+until (i=n);
+write(sum,'[',msg,']')
+end.
+
+
+
+
+
+PROBLEM2 SOL1/
+ALGORITHME lenear_data_structure
+var
+tab:Array_of_integer[1..30];
+tab2:Array_of_integer[1..30];
+i,j:integer;
+begin
+repeat
+write('donner la taille du tableau:');
+readln(n)
+until (n>=5)
+for i from 1 to n do 
+  repeat
+    write('T[',i,']')
+    readln(T[i])
+  until T[i]<>T[i+1]
+end_for
+repeat
+write('donner la taille du tableau 2:')
+readln(n2);
+until (n2>=5)
+for i from 1 to n2 do 
+  repeat
+    write('T2[',i,']')
+    readln(T2[i])
+  until T2[i]<>T2[i+1]
+end_for
+sum:=0;
+msg:='';
+i:=1;
+repeat
+  for j from 0 to n2 do 
+    if (T[i]=T2[j]) then 
+    sum:=sum+(T[i]*2);
+    msg:=msg +',i,' + ',';
+    end_if
+  end_for
+  i:=i+1;
+until (i=n)
+write(sum,'[',msg,']')
+end.
+
+
+
+
+
+PROBLEM1 SOL2
+ALGORITHM hash
+VAR
+   htab : HASH_TABLE<INTEGER,integer>;
+   tab:Array_of_integer[1..30];
+   tab2:Array_of_integer[1..30];
+   tab3:Array_of_integer[1..30];
+   i,count:integer;
+begin
+repeat
+write('donner la taille du tableau:');
+readln(n)
+until (n>=5)
+for i from 1 to n do 
+    write('T[',i,']')
+    readln(T[i])
+end_for
+repeat
+write('donner la taille du tableau 2:')
+readln(n2);
+until (n2>=5);
+for i from 1 to n2 do 
+    write('T2[',i,']');
+    readln(T2[i]);
+end_for
+j:=0;
+i:=0;
+repeat
+    j:=j+1;
+    T3[j]:=T[i];
+until (i=n);
+j:=0;
+i:=0;
+repeat
+    j:=j+1;
+    T3[j]:=T2[i];
+until (i=n);
+FOR i FROM 0 TO (n+n2) DO
+     IF (htab.lookup(T3[i]) = TRUE) THEN
+         count := htab.get(T3[i]);
+         htab.insert(T3[i],count+1);
+     ELSE
+         htab.insert(T3[i],1);
+     END_IF
+END_FOR
+sum:=0;
+msg:='';
+FOR i FROM 0 TO (n+n2) DO
+  IF (htab.get(T3[i]) = 1) THEN
+  sum:=sum+T3[i];
+  msg:=msg+',T3[i],';    
+  END_IF
+END_FOR
+write(sum,msg)
+       
+
+
+
+
+
+
+
+
+
+
+
+
+PROBLEM2 SOL2
+ALGORITHM hash
+VAR
+   htab : HASH_TABLE<INTEGER,integer>;
+   tab:Array_of_integer[1..30];
+   tab2:Array_of_integer[1..30];
+   i,count:integer;
+begin
+repeat
+write('donner la taille du tableau:');
+readln(n)
+until (n>=5)
+for i from 1 to n do 
+  repeat
+    write('T[',i,']')
+    readln(T[i])
+  until T[i]<>T[i+1]
+end_for
+repeat
+write('donner la taille du tableau 2:')
+readln(n2);
+until (n2>=5)
+for i from 1 to n2 do 
+  repeat
+    write('T2[',i,']')
+    readln(T2[i])
+  until T2[i]<>T2[i+1]
+end_for
+FOR i FROM 0 TO n STEP 1  DO
+j:=0;
+i:=0;
+repeat
+    j:=j+1;
+    T3[j]:=T[i];
+until (i=n);
+j:=0;
+i:=0;
+repeat
+    j:=j+1;
+    T3[j]:=T2[i];
+until (i=n);
+FOR i FROM 0 TO (n+n2) DO
+     IF (htab.lookup(T3[i]) = TRUE) THEN
+         count := htab.get(T3[i]);
+         htab.insert(T3[i],count+1);
+     ELSE
+         htab.insert(T3[i],1);
+     END_IF
+END_FOR
+sum:=0;
+msg:='';
+FOR i FROM 0 TO (n+n2) DO
+  IF (htab.get(T3[i])<>1) THEN
+  sum:=sum+(T3[i]*2);
+  msg:=msg+',T3[i],';    
+  END_IF
+END_FOR
+write(sum,msg)
+
+ 
+   
+   
